@@ -2,7 +2,7 @@ import { KeyboardAvoidingView, StyleSheet, Image } from 'react-native';
 import React, { useState } from 'react';
 
 import { auth } from '../firebaseAuth';
-import saveUser from '../services/UsersDbService';
+import { saveUser } from '../services/UsersDbService';
 
 import AuthenticationInput from '../components/AuthenticationInput';
 import SubmitAuthButton from '../components/SubmitAuthButton';
