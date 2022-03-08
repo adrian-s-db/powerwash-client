@@ -18,7 +18,7 @@ import Loader from '../components/Loader';
 import ToggleSaveMachineButton from '../components/SaveMachineButton';
 import ToHomeButton from '../components/ToHomeButton';
 
-export default function InfoPage({ route, navigation } ) {
+export default function InfoPage({ route, navigation }) {
   const user = useContext(AuthContext);
 
   const { washingMachineCode } = route.params;
@@ -67,15 +67,12 @@ export default function InfoPage({ route, navigation } ) {
           consPerCycle={machineData.energyConsPerCycle}
           todayEnergyPrices={hourlyEnergyData[0].prices}
         />
-          <ToHomeButton
-            navigation={navigation}
-            styles={styles.homeButton}
-          />
         <GraphFlatList
           style={styles.graghFlatList}
           data={hourlyEnergyData}
           machineCons={machineData.energyConsPerCycle}
         />
+        <ToHomeButton navigation={navigation} styles={styles.homeButton} />
       </View>
     );
   }
@@ -94,6 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginHorizontal: 10,
     marginTop: 10,
+    marginBottom: 0,
     width: Dimensions.get('window').width - 40,
   },
   graghFlatList: {
@@ -102,6 +100,6 @@ const styles = StyleSheet.create({
   },
   homeButton: {
     position: 'absolute',
-    bottom: 20
-  }
+    bottom: 20,
+  },
 });

@@ -4,33 +4,27 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 import { auth } from '../firebaseAuth';
 import AuthContext from '../AuthContext';
-import { getUserData } from '../services/UsersDbService';
 
 import Loader from '../components/Loader';
 import ToScanButton from '../components/ToScanButton';
+import SignOutButton from '../components/SignOutButton';
+import AuthedScanButton from '../components/AuthedScanButton';
+import DashBoardHeader from '../components/DashBoardHeader';
 
 export default function AuthorizedApp({navigation}) {
   const {user, setUser} = useContext(AuthContext);
 
-  const handleSignOut = () => {
-    auth.signOut().catch((error) => {
-      alert(error.message);
-    });
-  };
-
-  //TODO: Add loader?
-
     return (
       <View style={styles.container}>
-        <Text>You are authorized!</Text>
-        <Text>Your email is {user?.email}</Text>
-        <Text>The machines on your account are: {user?.savedMachines}</Text>
-        <Button onPress={handleSignOut} title="Log out"></Button>
-        <StatusBar style="auto" />
-
-        <ToScanButton
-          navigation={navigation}
+        <DashBoardHeader
+          savedMachinesLength = {user?.savedMachines.length}
         />
+        <Text>The machines on your account are: {user?.savedMachines}</Text>
+
+        <AuthedScanButton
+        navigation={navigation}
+        />
+        <SignOutButton/>
       </View>
     );
 
@@ -39,8 +33,7 @@ export default function AuthorizedApp({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#1a68c7',
     alignItems: 'center',
-    justifyContent: 'center',
   },
 });

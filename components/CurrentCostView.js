@@ -31,13 +31,15 @@ const CurrentCostView = ({currentEnergyPrice, consPerCycle, todayEnergyPrices}) 
 const styles = StyleSheet.create({
   currentCostInfoContainer: {
     justifyContent: 'space-between',
-    margin: 5,
+    marginTop: 5,
+    marginHorizontal: 5,
+    marginBottom: 0,
     width: Dimensions.get('window').width - 40,
     borderRadius: 12
   },
   currentCostInfoText: {
     color: '#EEEEEE',
-    marginBottom: 2
+    marginBottom: 1
   }
 })
 

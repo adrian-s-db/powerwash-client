@@ -1,22 +1,23 @@
 import { StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements';
 
-const ToHomeButton = ({navigation}) => {
+
+const AuthedScanButton = ({navigation}) => {
   return (
     <Button
-          title="Back to home"
+          title="Scan"
           buttonStyle={styles.logInButton}
           type="outline"
           titleStyle={styles.logInButtonTitle}
           containerStyle={styles.buttonContainer}
           onPress={() => {
-            navigation.navigate('Authorized');
+            navigation.navigate('Scan');
           }}
     />
   )
 }
 
-export default ToHomeButton
+export default AuthedScanButton
 
 const styles=StyleSheet.create({
   logInButton: {
@@ -28,6 +29,8 @@ const styles=StyleSheet.create({
   buttonContainer: {
     width: 200,
     marginHorizontal: 50,
-    marginBottom: 15,
+    marginVertical: 10,
+    position: 'absolute',
+    bottom: 70,
   }
 })

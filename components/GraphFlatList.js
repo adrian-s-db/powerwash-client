@@ -32,8 +32,13 @@ const GraphFlatList = ({data, machineCons}) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   item: {
-    margin: 15,
+    marginTop: 10,
+    marginBottom: 15,
+    marginHorizontal: 15,
   },
 });
 
