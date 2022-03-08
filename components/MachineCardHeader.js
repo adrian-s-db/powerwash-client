@@ -5,10 +5,10 @@ import React from 'react';
 const MachineCardHeader = ({machineData}) => {
   return (
     <View style={styles.machineInfoContainer}>
-      <Text h3 h1Style={{ fontWeight: '600', color: '#373737'}}>
+      <Text h3 h1Style={{ fontWeight: '700', color: '#373737'}}>
         {machineData.supplierOrTrademark}
       </Text>
-      <Divider />
+      <Divider color="#eeeeee" />
       <Text h4 style={styles.machineInfo}>
         {machineData.modelIdentifier}
       </Text>
@@ -20,9 +20,9 @@ export default MachineCardHeader;
 
 const styles = StyleSheet.create({
   machineInfoContainer: {
-    marginLeft: 5,
+    marginLeft: 15,
   },
   machineInfo: {
-    color: '#1a68c7',
+    color: '#eeeeee',
   }
 })

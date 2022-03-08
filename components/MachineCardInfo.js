@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { Text } from 'react-native-elements'
 import React from 'react'
 import { runningCost } from '../helpers/currentCostHelpers'
 
@@ -6,7 +7,8 @@ const MachineCardInfo = ({machineData, currentPrice}) => {
   const cost = runningCost(machineData.energyConsPerCycle, currentPrice)
   return (
     <View style={styles.container}>
-      <Text>{cost}</Text>
+      <Text h5 style={{color: '#373737', fontWeight: '600', textAlign: 'center'}}>{cost}€</Text>
+      <Text h5 style={{color: '#373737', fontWeight: '600', textAlign: 'right'}}>/wash</Text>
     </View>
   )
 }
@@ -16,6 +18,7 @@ export default MachineCardInfo
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red'
+    justifyContent: 'center',
+    alignContent: 'flex-end'
   }
 })
