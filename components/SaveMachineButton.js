@@ -1,6 +1,6 @@
 import { Button } from "react-native-elements";
 
-import { useEffect, useState, useContext } from 'react';
+import { useContext } from 'react';
 
 import { updateUser } from "../services/UsersDbService";
 import AuthContext from '../AuthContext';
@@ -13,7 +13,7 @@ const ToggleSaveMachineButton = (washingMachineCode) => {
     const updatedUser = await updateUser(user, machineid);
     setUser(updatedUser);
   }
-  
+
   return (
     <Button
       icon={{
