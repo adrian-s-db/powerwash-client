@@ -20,7 +20,7 @@ export default MachineCardHeader;
 
 const styles = StyleSheet.create({
   machineInfoContainer: {
-    alignSelf: 'flex-start',
+    marginLeft: 5,
   },
   machineInfo: {
     color: '#1a68c7',

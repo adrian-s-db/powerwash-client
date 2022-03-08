@@ -12,5 +12,7 @@ export default async function getWashingMachineData(washingMachineCode) {
   const json = await query.json();
   const { energyClass, modelIdentifier, ratedCapacity, supplierOrTrademark, waterCons, noiseClass, energyConsPerCycle } = json;
   const data = { energyClass, modelIdentifier, ratedCapacity, supplierOrTrademark, waterCons, noiseClass, energyConsPerCycle };
+  // Add QR code scan data
+  data.scannedCode = washingMachineCode;
   return data;
 }

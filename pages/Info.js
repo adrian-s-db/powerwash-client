@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 40,
   },
   buttonsContainer: {
-    marginVertical: 10,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingTop: 15
   },
   graghFlatList: {
     marginTop: 30,

@@ -2,13 +2,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import MachineInfoCard from './MachineCard';
 
-const DashBoardMachinesList = ({ machineIds }) => {
+const DashBoardMachinesList = ({ machineIds, navigation }) => {
   return (
    machineIds.length ?
     <View style={styles.container}>
       {machineIds.map((id)=> {
         return (
         <MachineInfoCard
+          navigation={navigation}
           machineId={id}
           key={id}
         />

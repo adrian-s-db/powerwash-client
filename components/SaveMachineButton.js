@@ -37,7 +37,7 @@ const ToggleSaveMachineButton = (washingMachineCode) => {
         marginVertical: 0,
         alignContent: 'center',
         justifyContent: 'center',
-        marginLeft: 12,
+        marginLeft: 0,
         marginRight: 0,
       }}
       onPress={() => {

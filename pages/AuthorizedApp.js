@@ -22,6 +22,7 @@ export default function AuthorizedApp({navigation}) {
         />
         <DashBoardMachinesList
           machineIds={user?.savedMachines}
+          navigation={navigation}
         />
 
         <AuthedScanButton

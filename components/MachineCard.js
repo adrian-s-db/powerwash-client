@@ -1,34 +1,41 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
 
 import MachineCardHeader from './MachineCardHeader';
+import MachineCardInfo from './MachineCardInfo';
 import { getWashingMachineData } from '../services/MachinesDBService';
 import ToggleSaveMachineButton from './SaveMachineButton';
-import { RotationGestureHandler } from 'react-native-gesture-handler';
+import { getCurrentEnergyPrice } from '../services/REDapiService';
+import { NavigationContainer } from '@react-navigation/native';
 
-const MachineInfoCard = ({machineId}) => {
+const MachineInfoCard = ({ machineId, navigation }) => {
   const [info, setInfo] = useState(null);
+  const [currentPrice, setcurrentPrice] = useState(null);
 
   useEffect(async () => {
     const fetchedInfo = await getWashingMachineData(machineId);
     setInfo(fetchedInfo);
-  }, [])
+    const fetchedCost = await getCurrentEnergyPrice();
+    setcurrentPrice(fetchedCost);
+  }, []);
 
-  return (info ?
-    <View style={styles.container}>
-      <MachineCardHeader
-        machineData={info}
-      />
-      <ToggleSaveMachineButton
-        washingMachineCode={machineId}
-      />
+  return info && currentPrice ? (
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => 
+        navigation.navigate('Info', {
+          washingMachineCode: info.scannedCode,
+        })
+      }
+    >
+      <ToggleSaveMachineButton washingMachineCode={machineId} />
+      <MachineCardHeader machineData={info} />
+      <MachineCardInfo machineData={info} currentPrice={currentPrice} />
+    </TouchableOpacity>
+  ) : null;
+};
 
-    </View> : null
-  )
-}
-
-export default MachineInfoCard
+export default MachineInfoCard;
 
 const styles = StyleSheet.create({
   container: {
@@ -38,6 +45,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     width: '100%',
     flexDirection: 'row',
-    alignContent: 'center'
-  }
-})
+    alignContent: 'center',
+  },
+});

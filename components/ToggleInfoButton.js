@@ -24,7 +24,7 @@ const ToggleInfoButton = ({ setDisplayToggle, displayToggle }) => {
         alignContent: 'center',
         justifyContent: 'center',
         marginLeft: 12,
-        marginRight: 0,
+        marginRight: 12,
       }}
       onPress={() => {
         setDisplayToggle(!displayToggle);
