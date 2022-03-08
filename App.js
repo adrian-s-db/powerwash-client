@@ -20,7 +20,8 @@ export default function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((loggedInUser) => {
-      setUser(loggedInUser.uid);
+      const uid = loggedInUser?.uid || null
+      setUser(uid);
     });
     return unsubscribe;
   }, []);
