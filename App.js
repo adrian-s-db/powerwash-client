@@ -36,7 +36,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <AuthContext.Provider value={user}>
+        <AuthContext.Provider value={{user, setUser}}>
           <Stack.Navigator>
             {user ? (
               <>
