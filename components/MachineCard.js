@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 
 import MachineCardHeader from './MachineCardHeader';
 import { getWashingMachineData } from '../services/MachinesDBService';
+import ToggleSaveMachineButton from './SaveMachineButton';
+import { RotationGestureHandler } from 'react-native-gesture-handler';
 
 const MachineInfoCard = ({machineId}) => {
   const [info, setInfo] = useState(null);
@@ -15,10 +17,13 @@ const MachineInfoCard = ({machineId}) => {
 
   return (info ?
     <View style={styles.container}>
-      {/* NOW: Change MachineInfoHeader for more suitable copied new components */}
       <MachineCardHeader
         machineData={info}
       />
+      <ToggleSaveMachineButton
+        washingMachineCode={machineId}
+      />
+
     </View> : null
   )
 }
@@ -31,6 +36,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     padding: 15,
     borderRadius: 12,
-    width: '100%'
+    width: '100%',
+    flexDirection: 'row',
+    alignContent: 'center'
   }
 })

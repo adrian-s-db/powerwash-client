@@ -34,7 +34,9 @@ const ToggleSaveMachineButton = (washingMachineCode) => {
       containerStyle={{
         width: 60,
         height: 60,
-        marginVertical: 20,
+        marginVertical: 0,
+        alignContent: 'center',
+        justifyContent: 'center',
         marginLeft: 12,
         marginRight: 0,
       }}

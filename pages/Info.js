@@ -51,6 +51,7 @@ export default function InfoPage({ route, navigation }) {
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <MachineInfoHeader machineData={machineData} />
+          <View style={styles.buttonsContainer}>
           <ToggleInfoButton
             displayToggle={displayToggle}
             setDisplayToggle={setDisplayToggle}
@@ -60,6 +61,7 @@ export default function InfoPage({ route, navigation }) {
               washingMachineCode={machineData.modelIdentifier}
             />
           )}
+          </View>
         </View>
         <MoreInfoToggle machineData={machineData} display={displayToggle} />
         <CurrentCostView
@@ -93,6 +95,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 0,
     width: Dimensions.get('window').width - 40,
+  },
+  buttonsContainer: {
+    marginVertical: 10,
+    flexDirection: 'row'
   },
   graghFlatList: {
     marginTop: 30,
