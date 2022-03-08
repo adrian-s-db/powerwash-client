@@ -31,11 +31,23 @@ export default function App() {
         <AuthContext.Provider value={user}>
           <Stack.Navigator>
             {user ? (
-              <Stack.Screen
-                name="Authorized"
-                component={AuthorizedApp}
-                options={{ headerShown: false }}
-              />
+              <>
+                <Stack.Screen
+                  name="Authorized"
+                  component={AuthorizedApp}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Scan"
+                  component={ScanPage}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Info"
+                  component={InfoPage}
+                  options={{ headerShown: false }}
+                />
+              </>
             ) : (
               <>
                 <Stack.Screen

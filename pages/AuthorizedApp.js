@@ -7,8 +7,9 @@ import AuthContext from '../AuthContext';
 import { getUserData } from '../services/UsersDbService';
 
 import Loader from '../components/Loader';
+import ToScanButton from '../components/ToScanButton';
 
-export default function AuthorizedApp() {
+export default function AuthorizedApp({navigation}) {
   const user = useContext(AuthContext);
 
   const [userData, setUserData] = useState();
@@ -37,6 +38,10 @@ export default function AuthorizedApp() {
         <Text>The machines on your account are: {userData.savedMachines}</Text>
         <Button onPress={handleSignOut} title="Log out"></Button>
         <StatusBar style="auto" />
+
+        <ToScanButton
+          navigation={navigation}
+        />
       </View>
     );
   }
