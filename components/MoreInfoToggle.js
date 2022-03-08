@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     justifyContent: 'space-between',
-    margin: 5,
+    marginLeft: 5,
+    marginBottom: 5,
     width: Dimensions.get('window').width - 40,
     borderRadius: 12,
     backgroundColor: '#EEEEEE99',

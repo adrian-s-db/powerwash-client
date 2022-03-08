@@ -1,21 +1,24 @@
-import { useContext, useState } from "react";
-import { View, StyleSheet, Image, Dimensions} from "react-native";
+import { useContext, useState } from 'react';
+import { View, StyleSheet, Image, Dimensions } from 'react-native';
 
-import getWashingMachineData from "../services/EPRELapiService";
-import saveWashingMachineData from "../services/MachinesDBService";
-import {getCurrentEnergyPrice, getMultidayHourlyEnergyPrices} from "../services/REDapiService";
-import AuthContext from "../AuthContext";
+import getWashingMachineData from '../services/EPRELapiService';
+import saveWashingMachineData from '../services/MachinesDBService';
+import {
+  getCurrentEnergyPrice,
+  getMultidayHourlyEnergyPrices,
+} from '../services/REDapiService';
+import AuthContext from '../AuthContext';
 
-import GraphFlatList from "../components/GraphFlatList";
-import MoreInfoToggle from "../components/MoreInfoToggle";
-import CurrentCostView from "../components/CurrentCostView";
-import ToggleInfoButton from "../components/ToggleInfoButton";
-import MachineInfoHeader from "../components/MachineIdentifier";
-import Loader from "../components/Loader";
-import SaveMachineButton from '../components/SaveMachineButton'
-import ToggleSaveMachineButton from "../components/SaveMachineButton";
+import GraphFlatList from '../components/GraphFlatList';
+import MoreInfoToggle from '../components/MoreInfoToggle';
+import CurrentCostView from '../components/CurrentCostView';
+import ToggleInfoButton from '../components/ToggleInfoButton';
+import MachineInfoHeader from '../components/MachineIdentifier';
+import Loader from '../components/Loader';
+import ToggleSaveMachineButton from '../components/SaveMachineButton';
+import ToHomeButton from '../components/ToHomeButton';
 
-export default function InfoPage({ route },) {
+export default function InfoPage({ route, navigation } ) {
   const user = useContext(AuthContext);
 
   const { washingMachineCode } = route.params;
@@ -25,10 +28,10 @@ export default function InfoPage({ route },) {
 
   const [machineData, setMachineData] = useState(null);
   const [currentEnergyPrice, setCurrentEnergyPrice] = useState(null);
-  const [hourlyEnergyData, setHourlyEnergyData] = useState([])
+  const [hourlyEnergyData, setHourlyEnergyData] = useState([]);
 
   useState(() => {
-    async function getData () {
+    async function getData() {
       const machineDataFetch = await getWashingMachineData(washingMachineCode);
       setMachineData(machineDataFetch);
       saveWashingMachineData(machineDataFetch);
@@ -36,48 +39,45 @@ export default function InfoPage({ route },) {
       setCurrentEnergyPrice(currentPrice);
       const multidayHourlyEnergyPrices = await getMultidayHourlyEnergyPrices();
       setHourlyEnergyData(multidayHourlyEnergyPrices);
-      setLoading(false)
-    };
+      setLoading(false);
+    }
     getData();
   }, []);
 
   if (loading) {
-    return(
-      <Loader/>
-    )
+    return <Loader />;
   } else {
-    return(
+    return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-            <MachineInfoHeader
-              machineData={machineData}
-            />
-            <ToggleInfoButton
-              displayToggle={displayToggle}
-              setDisplayToggle={setDisplayToggle}
-            />
-            {user &&
+          <MachineInfoHeader machineData={machineData} />
+          <ToggleInfoButton
+            displayToggle={displayToggle}
+            setDisplayToggle={setDisplayToggle}
+          />
+          {user && (
             <ToggleSaveMachineButton
               washingMachineCode={machineData.modelIdentifier}
             />
-            }
+          )}
         </View>
-        <MoreInfoToggle
-          machineData={machineData}
-          display={displayToggle}
-        />
+        <MoreInfoToggle machineData={machineData} display={displayToggle} />
         <CurrentCostView
           currentEnergyPrice={currentEnergyPrice}
           consPerCycle={machineData.energyConsPerCycle}
           todayEnergyPrices={hourlyEnergyData[0].prices}
         />
+          <ToHomeButton
+            navigation={navigation}
+            styles={styles.homeButton}
+          />
         <GraphFlatList
           style={styles.graghFlatList}
           data={hourlyEnergyData}
           machineCons={machineData.energyConsPerCycle}
         />
       </View>
-    )
+    );
   }
 }
 
@@ -92,10 +92,16 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    margin: 10,
-    width: Dimensions.get('window').width - 40
+    marginHorizontal: 10,
+    marginTop: 10,
+    width: Dimensions.get('window').width - 40,
   },
   graghFlatList: {
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: 'red',
+  },
+  homeButton: {
+    position: 'absolute',
+    bottom: 20
   }
-})
+});

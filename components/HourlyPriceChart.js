@@ -16,7 +16,7 @@ export function HourlyPriceChart ({hourlyPrices, machineCons}) {
       ]
     }}
     width={Dimensions.get('window').width - 60} // from react-native
-    height={200}
+    height={180}
     yAxisSuffix='€'
     chartConfig={{
       backgroundGradientFrom: "#01abf6",
