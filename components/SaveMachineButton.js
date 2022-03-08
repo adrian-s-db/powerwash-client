@@ -1,6 +1,6 @@
 import { Button } from "react-native-elements";
 
-import { useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import { updateUser } from "../services/UsersDbService";
 import AuthContext from '../AuthContext';
@@ -9,21 +9,18 @@ const ToggleSaveMachineButton = (washingMachineCode) => {
 
   const {user, setUser} = useContext(AuthContext);
 
-  const toggleSaveMachine = async (machineid) => {
-    const updatedArr = await updateUser(user, machineid);
-    console.log(updatedArr);
-    // Call service to update DB
-    // DB returns updated object
-    // setUser(updatedObject)
+   const toggleSaveMachine = async (machineid) => {
+    const updatedUser = await updateUser(user, machineid);
+    setUser(updatedUser);
   }
-
+  
   return (
     <Button
       icon={{
         name: 'heart',
         type: 'font-awesome',
         size: 30,
-        color: user.savedMachines.includes(washingMachineCode) ? '#8E1600' : '#EEEEEE',
+        color: user.savedMachines.includes(washingMachineCode.washingMachineCode) ? '#8E1600' : '#EEEEEE',
       }}
       buttonStyle={{
         borderColor: '#EEEEEE',
