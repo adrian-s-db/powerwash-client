@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { View, StyleSheet, Image, Dimensions} from "react-native";
 
 import getWashingMachineData from "../services/EPRELapiService";
 import saveWashingMachineData from "../services/MachinesDBService";
 import {getCurrentEnergyPrice, getMultidayHourlyEnergyPrices} from "../services/REDapiService";
+import AuthContext from "../AuthContext";
 
 import GraphFlatList from "../components/GraphFlatList";
 import MoreInfoToggle from "../components/MoreInfoToggle";
@@ -11,8 +12,11 @@ import CurrentCostView from "../components/CurrentCostView";
 import ToggleInfoButton from "../components/ToggleInfoButton";
 import MachineInfoHeader from "../components/MachineIdentifier";
 import Loader from "../components/Loader";
+import SaveMachineButton from '../components/SaveMachineButton'
 
-export default function InfoPage({ route }) {
+export default function InfoPage({ route },) {
+  const user = useContext(AuthContext);
+
   const { washingMachineCode } = route.params;
 
   const [loading, setLoading] = useState(true);
@@ -51,6 +55,13 @@ export default function InfoPage({ route }) {
               displayToggle={displayToggle}
               setDisplayToggle={setDisplayToggle}
             />
+            {user &&
+            <SaveMachineButton
+              savedMachines={user.savedMachines}
+              washingMachineCode={washingMachineCode}
+              user={user}
+            />
+            }
         </View>
         <MoreInfoToggle
           machineData={machineData}

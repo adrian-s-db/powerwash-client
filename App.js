@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 import { auth } from './firebaseAuth';
 import AuthContext from './AuthContext';
+import { getUserData } from './services/UsersDbService';
 
 import HomePage from './pages/Home';
 import ScanPage from './pages/Scan';
@@ -20,8 +21,14 @@ export default function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((loggedInUser) => {
-      const uid = loggedInUser?.uid || null
-      setUser(uid);
+    const uid = loggedInUser?.uid;
+      if (uid) {
+        getUserData(uid)
+        .then(data => setUser(data))
+        .catch(e => console.error(e));
+      } else {
+        setUser(null);
+      }
     });
     return unsubscribe;
   }, []);
