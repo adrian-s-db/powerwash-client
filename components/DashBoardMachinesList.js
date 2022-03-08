@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: 'red',
     marginTop: 50,
     marginBottom: 130,
+    width: '90%'
   },
 });

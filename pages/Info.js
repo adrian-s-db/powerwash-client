@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
 
 import getWashingMachineData from '../services/EPRELapiService';
-import saveWashingMachineData from '../services/MachinesDBService';
+import {saveWashingMachineData} from '../services/MachinesDBService';
 import {
   getCurrentEnergyPrice,
   getMultidayHourlyEnergyPrices,

@@ -1,11 +1,25 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+
+import MachineCardHeader from './MachineCardHeader';
+import { getWashingMachineData } from '../services/MachinesDBService';
 
 const MachineInfoCard = ({machineId}) => {
-  return (
+  const [info, setInfo] = useState(null);
+
+  useEffect(async () => {
+    const fetchedInfo = await getWashingMachineData(machineId);
+    setInfo(fetchedInfo);
+  }, [])
+
+  return (info ?
     <View style={styles.container}>
-      <Text>This machine has id {machineId}</Text>
-    </View>
+      {/* NOW: Change MachineInfoHeader for more suitable copied new components */}
+      <MachineCardHeader
+        machineData={info}
+      />
+    </View> : null
   )
 }
 
@@ -15,6 +29,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#EEEEEE99',
     marginBottom: 10,
+    padding: 15,
+    borderRadius: 12,
     width: '100%'
   }
 })
