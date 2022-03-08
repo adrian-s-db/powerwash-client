@@ -10,11 +10,7 @@ import Loader from '../components/Loader';
 import ToScanButton from '../components/ToScanButton';
 
 export default function AuthorizedApp({navigation}) {
-  const user = useContext(AuthContext);
-
-  // NO LONGER NEED IT WITH CONTEXT
-  // const [userData, setUserData] = useState();
-  // const [loading, setLoading] = useState(true);
+  const {user, setUser} = useContext(AuthContext);
 
   const handleSignOut = () => {
     auth.signOut().catch((error) => {
@@ -22,28 +18,19 @@ export default function AuthorizedApp({navigation}) {
     });
   };
 
-  // NO LONGER NEED IT WITH CONTEXT
-  // useEffect(async () => {
-  //   const fetchedData = await getUserData(user);
-  //   setUserData(fetchedData);
-  //   setLoading(false);
-  // }, []);
+  //TODO: Add loader?
 
-  // if (loading) {
-  //   return <Loader />;
-  // } else {
     return (
       <View style={styles.container}>
         <Text>You are authorized!</Text>
-        <Text>Your email is {user.email}</Text>
-        <Text>The machines on your account are: {user.savedMachines}</Text>
+        <Text>Your email is {user?.email}</Text>
+        <Text>The machines on your account are: {user?.savedMachines}</Text>
         <Button onPress={handleSignOut} title="Log out"></Button>
         <StatusBar style="auto" />
 
-        {/* //PENDING */}
-        {/* <ToScanButton
+        <ToScanButton
           navigation={navigation}
-        /> */}
+        />
       </View>
     );
 

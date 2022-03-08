@@ -33,16 +33,19 @@ export async function getUserData(userId) {
   }
 }
 
-export async function addMachine(userId, washingMachineCode) {
+export async function updateUser(userData, machineId) {
   try {
-    const url = process.env.REACT_APP_BACKEND_SERVER_URL + '/users/' + userId;
+    const url = process.env.REACT_APP_BACKEND_SERVER_URL + '/users/' + userData.uid;
     const query = await fetch(url, {
      method: 'PUT',
      headers: {
        Accept: 'application/json',
        'Content-Type': 'application/json',
      },
-     body: washingMachineCode
+     body: JSON.stringify({
+       "user": userData,
+       "machine": machineId
+      })
     });
     const json = await query.json();
     return json;

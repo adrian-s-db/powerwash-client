@@ -1,8 +1,21 @@
 import { Button } from "react-native-elements";
-import React from 'react';
 
-const SaveMachineButton = (user, washingMachineCode) => {
+import { useContext } from 'react';
 
+import { updateUser } from "../services/UsersDbService";
+import AuthContext from '../AuthContext';
+
+const ToggleSaveMachineButton = (washingMachineCode) => {
+
+  const {user, setUser} = useContext(AuthContext);
+
+  const toggleSaveMachine = async (machineid) => {
+    const updatedArr = await updateUser(user, machineid);
+    console.log(updatedArr);
+    // Call service to update DB
+    // DB returns updated object
+    // setUser(updatedObject)
+  }
 
   return (
     <Button
@@ -10,7 +23,7 @@ const SaveMachineButton = (user, washingMachineCode) => {
         name: 'heart',
         type: 'font-awesome',
         size: 30,
-        color: '#EEEEEE',
+        color: user.savedMachines.includes(washingMachineCode) ? '#8E1600' : '#EEEEEE',
       }}
       buttonStyle={{
         borderColor: '#EEEEEE',
@@ -20,10 +33,10 @@ const SaveMachineButton = (user, washingMachineCode) => {
       }}
       containerStyle={{ width: 50, height: 50, margin: 20 }}
       onPress={() => {
-        //addMachine(user, washingMachineCode);
+        toggleSaveMachine(washingMachineCode)
       }}
     />
   );
 };
 
-export default SaveMachineButton;
+export default ToggleSaveMachineButton;

@@ -13,6 +13,7 @@ import ToggleInfoButton from "../components/ToggleInfoButton";
 import MachineInfoHeader from "../components/MachineIdentifier";
 import Loader from "../components/Loader";
 import SaveMachineButton from '../components/SaveMachineButton'
+import ToggleSaveMachineButton from "../components/SaveMachineButton";
 
 export default function InfoPage({ route },) {
   const user = useContext(AuthContext);
@@ -56,10 +57,8 @@ export default function InfoPage({ route },) {
               setDisplayToggle={setDisplayToggle}
             />
             {user &&
-            <SaveMachineButton
-              savedMachines={user.savedMachines}
-              washingMachineCode={washingMachineCode}
-              user={user}
+            <ToggleSaveMachineButton
+              washingMachineCode={machineData.modelIdentifier}
             />
             }
         </View>
