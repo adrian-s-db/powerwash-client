@@ -10,6 +10,7 @@ import ToScanButton from '../components/ToScanButton';
 import SignOutButton from '../components/SignOutButton';
 import AuthedScanButton from '../components/AuthedScanButton';
 import DashBoardHeader from '../components/DashBoardHeader';
+import DashBoardMachinesList from '../components/DashBoardMachinesList';
 
 export default function AuthorizedApp({navigation}) {
   const {user, setUser} = useContext(AuthContext);
@@ -19,7 +20,9 @@ export default function AuthorizedApp({navigation}) {
         <DashBoardHeader
           savedMachinesLength = {user?.savedMachines.length}
         />
-        <Text>The machines on your account are: {user?.savedMachines}</Text>
+        <DashBoardMachinesList
+          machineIds={user?.savedMachines}
+        />
 
         <AuthedScanButton
         navigation={navigation}
@@ -35,5 +38,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1a68c7',
     alignItems: 'center',
-  },
+    justifyContent: 'center'
+  }
 });

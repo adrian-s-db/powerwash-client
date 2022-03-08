@@ -2,15 +2,13 @@ import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 
 const DashBoardHeader = ({savedMachinesLength}) => {
-  return (
+  return (!savedMachinesLength  ?
     <View style={styles.headerContainer}>
 
     <Text h3 style={styles.headerText}>
-        {!savedMachinesLength && "Scan your first machine to get started!"}
-        {savedMachinesLength == 1 && "This is your saved machine:"}
-        {savedMachinesLength > 1 && "These are your saved machines:"}
+        Scan your first machine to get started!
       </Text>
-    </View>
+    </View> :null
   );
 };
 
@@ -20,9 +18,8 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
   headerContainer: {
-    margin: 10,
-    position: 'absolute',
-    top: 40
+    marginHorizontal: 20,
+    marginTop: -40
   }
 })
 
