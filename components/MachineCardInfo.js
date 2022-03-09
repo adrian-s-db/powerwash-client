@@ -7,8 +7,8 @@ const MachineCardInfo = ({machineData, currentPrice}) => {
   const cost = runningCost(machineData.energyConsPerCycle, currentPrice)
   return (
     <View style={styles.container}>
-      <Text h5 style={{color: '#373737', fontWeight: '600', textAlign: 'center'}}>{cost}€</Text>
-      <Text h5 style={{color: '#373737', fontWeight: '600', textAlign: 'right'}}>/wash</Text>
+      <Text h5 style={{fontWeight: '600',  textAlign: 'center'}}>{cost}</Text>
+      <Text h5 style={{fontWeight: '600',  textAlign: 'right'}}>/wash</Text>
     </View>
   )
 }
@@ -18,7 +18,6 @@ export default MachineCardInfo
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'flex-end'
+    justifyContent: 'center'
   }
 })

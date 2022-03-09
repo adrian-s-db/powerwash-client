@@ -22,7 +22,7 @@ const ToggleSaveMachineButton = (washingMachineCode) => {
         color: user.savedMachines.includes(
           washingMachineCode.washingMachineCode
         )
-          ? '#E10000'
+          ? '#c70000'
           : '#EEEEEE',
       }}
       buttonStyle={{
