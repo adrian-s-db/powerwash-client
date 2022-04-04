@@ -40,7 +40,7 @@ expo r
 * [React Native](https://facebook.github.io/react-native) - Front end library for building user interfaces.
 * [React Navigation](https://reactnavigation.org) - Routing and *navigation* for *React* Native apps.
 * [Expo](https://expo.io) - Build cross-platform native apps.
-
+* [Firebase Authentication](https://firebase.google.com/) - Token-based authentication by Google.
 
 ## Contributing
 
